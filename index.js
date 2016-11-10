@@ -52,6 +52,16 @@ app.get('/last', function(req, res) {
   });
 });
 
+app.get('/all', function(req, res) {
+  client.query('SELECT * FROM "reports" ORDER BY "id" DESC', function(err, result) {
+    if (err) {
+      res.send('false');
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
 app.get('/ping', function(req, res) {
   res.send('pong');
 });
